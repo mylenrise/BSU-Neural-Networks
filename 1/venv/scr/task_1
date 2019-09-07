@@ -1,0 +1,32 @@
+import numpy as np
+
+def sigmoid(x):
+    s = 1/(1+np.exp(-x))
+    return s
+
+I1=1
+I2=0
+w1=0.91
+w2=0
+w3=-0.02
+w4 = 0.13
+w5 = 8
+w6 = -2.3
+
+
+if __name__ == '__main__':
+    H1input = I1*w1+I2*w3 #0.45
+    H1output = sigmoid(H1input) #0.61
+
+    H2input = I1*w2+I2*w4 #0.78
+    H2output = sigmoid(H2input) #0.69
+
+    O1input = H1output*w5+H2output*w6 #-0.672
+    O1output = sigmoid(O1input) #0.33
+
+
+    O1ideal = I1^I2 #(0xor1=1)
+
+    Error = ((O1ideal-O1output)**2)/O1ideal #0.45
+    print(Error)
+    #Результат — 0.33, ошибка — 45%.
